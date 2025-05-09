@@ -14,6 +14,7 @@ export class TaskRoutes {
         router.get('/', taskController.listTasks)
 
         router.post('/', taskController.createTask )
+        router.put('/:id', taskController.updateTask)
 
         return router
     }

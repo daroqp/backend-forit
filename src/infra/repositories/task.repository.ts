@@ -1,5 +1,6 @@
 import { ITaskDatasource } from "../../domain/datasources/task.datasource";
 import { CreateTaskDto } from "../../domain/dtos/tasks/create-task.dto";
+import { UpdateTaskDto } from "../../domain/dtos/tasks/update-task.dto";
 import { TaskEntity } from "../../domain/entities/task.entity";
 import { ITaskRepository } from "../../domain/repositories/task.repository";
 
@@ -14,5 +15,9 @@ export class TaskRepository implements ITaskRepository {
 
     list(): Promise<TaskEntity[]> {
         return this.datasource.list()
+    }
+
+    update(updateDto: UpdateTaskDto): Promise<TaskEntity> {
+        return this.datasource.update( updateDto )
     }
 }
