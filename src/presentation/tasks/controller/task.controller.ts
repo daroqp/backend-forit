@@ -5,6 +5,7 @@ import { CreateTask } from "../../../domain/use-cases/create-task.use-case";
 import { ListTasks } from "../../../domain/use-cases/list-tasks.use-case";
 import { UpdateTask } from "../../../domain/use-cases/update-task.use-case";
 import { UpdateTaskDto } from "../../../domain/dtos/tasks/update-task.dto";
+import { DeleteTask } from "../../../domain/use-cases/delete-task.use-case";
 
 export class TaskController {
     constructor(
@@ -48,6 +49,15 @@ export class TaskController {
 
         new UpdateTask( this.repository )
             .execute( updateDto! )
+            .then( task => res.json( task ) )
+            .catch( error => res.status(400).json( error ) )
+    }
+
+    public deleteTask = (req: Request, res: Response) => {
+        const id = req.params.id
+
+        new DeleteTask( this.repository )
+            .execute( id )
             .then( task => res.json( task ) )
             .catch( error => res.status(400).json( error ) )
     }

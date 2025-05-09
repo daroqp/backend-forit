@@ -35,4 +35,17 @@ export class InMemoryDatasource implements ITaskDatasource {
 
         return taskToUpdate
     }
+
+    async delete(id: string): Promise<TaskEntity> {
+
+        const indexOfTask = tasks.findIndex( task => task.id === id)
+
+        if(indexOfTask === -1) {
+            throw `ID: ${ id } does not exist!`
+        }
+
+        const taskDeleted = tasks.splice(indexOfTask, 1)[0]
+
+        return taskDeleted
+    }
 }

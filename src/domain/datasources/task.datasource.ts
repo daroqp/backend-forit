@@ -6,4 +6,5 @@ export interface ITaskDatasource {
     create(taskDto: CreateTaskDto): Promise<TaskEntity>
     list(): Promise<TaskEntity[]>
     update(updateDto: UpdateTaskDto): Promise<TaskEntity>
+    delete(id: string): Promise<TaskEntity>
 }

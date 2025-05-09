@@ -20,4 +20,8 @@ export class TaskRepository implements ITaskRepository {
     update(updateDto: UpdateTaskDto): Promise<TaskEntity> {
         return this.datasource.update( updateDto )
     }
+
+    delete(id: string): Promise<TaskEntity> {
+        return this.datasource.delete( id )
+    }
 }
