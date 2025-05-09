@@ -11,6 +11,8 @@ export class TaskRoutes {
         const taskRepository = new TaskRepository( memoryTaskDatasource )
         const taskController = new TaskController( taskRepository )
 
+        router.get('/', taskController.listTasks)
+
         router.post('/', taskController.createTask )
 
         return router

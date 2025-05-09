@@ -11,4 +11,8 @@ export class TaskRepository implements ITaskRepository {
     create(createDto: CreateTaskDto): Promise<TaskEntity> {
         return this.datasource.create( createDto )
     }
+
+    list(): Promise<TaskEntity[]> {
+        return this.datasource.list()
+    }
 }

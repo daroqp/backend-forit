@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ITaskRepository } from "../../../domain/repositories/task.repository";
 import { CreateTaskDto } from "../../../domain/dtos/tasks/create-task.dto";
 import { CreateTask } from "../../../domain/use-cases/create-task.use-case";
+import { ListTasks } from "../../../domain/use-cases/list-tasks.use-case";
 
 export class TaskController {
     constructor(
@@ -23,5 +24,13 @@ export class TaskController {
             .catch( ( error  )=> {
                 return res.status(400).json({ error: error }) 
             })
+    }
+
+    public listTasks = (req: Request, res: Response) => {
+
+        new ListTasks( this.repository )
+            .execute()
+            .then(tasks => res.json( tasks ))
+            .catch(error => res.status(400).json( error ))
     }
 }

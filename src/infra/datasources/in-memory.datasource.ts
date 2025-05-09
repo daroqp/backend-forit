@@ -11,4 +11,8 @@ export class InMemoryDatasource implements ITaskDatasource {
         tasks.push( task )
         return task
     }
+
+    async list(): Promise<TaskEntity[]> {
+        return tasks
+    }
 }
