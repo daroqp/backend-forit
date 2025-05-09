@@ -23,4 +23,12 @@ export class TaskEntity {
         this.completed = completed;
         this.createdAt = createdAt;
     }
+
+    public static fromObject(object: {[key: string]: any}): TaskEntity {
+        const { id, title, description, completed, createdAt } = object;
+
+        const task = new TaskEntity({ id, title, description, completed, createdAt })
+
+        return task
+    }
 }
